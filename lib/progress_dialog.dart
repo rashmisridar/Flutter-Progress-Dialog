@@ -83,8 +83,8 @@ class ProgressDialog {
   // Int (Default: 1)
 
   show({
-    required int max,
-    required String msg,
+    int max = 100,
+    String msg: '',
     ProgressType progressType: ProgressType.normal,
     ValuePosition valuePosition: ValuePosition.right,
     Color backgroundColor: Colors.white,
