@@ -50,18 +50,26 @@ class ProgressDialog {
   //  Not directly accessible.
   _valueProgress({Color? valueColor, Color? bgColor, required double value}) {
     return CircularProgressIndicator(
-      backgroundColor: bgColor,
-      valueColor: AlwaysStoppedAnimation<Color?>(valueColor),
-      value: value.toDouble() / 100,
+      strokeWidth: 2,
+      valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
     );
   }
 
   /// [_normalProgress] Assigns progress properties.
   //  Not directly accessible.
   _normalProgress({Color? valueColor, Color? bgColor}) {
-    return CircularProgressIndicator(
-      backgroundColor: bgColor,
-      valueColor: AlwaysStoppedAnimation<Color?>(valueColor),
+    /*return CircularProgressIndicator(
+      strokeWidth: 2,
+      valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+    )*/
+    return Center(
+      child: Container(
+          height: 15,
+          width: 15,
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+          )),
     );
   }
 
@@ -110,8 +118,8 @@ class ProgressDialog {
       context: _context,
       builder: (context) => WillPopScope(
         child: AlertDialog(
-          backgroundColor: backgroundColor,
-          elevation: elevation,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(borderRadius),
@@ -127,24 +135,10 @@ class ProgressDialog {
                   Row(
                     children: [
                       Container(
-                        width: 35.0,
-                        height: 35.0,
-                        child: progressType == ProgressType.normal
-                            ? _normalProgress(
-                                bgColor: progressBgColor,
-                                valueColor: progressValueColor,
-                              )
-                            : value == 0
-                                ? _normalProgress(
-                                    bgColor: progressBgColor,
-                                    valueColor: progressValueColor,
-                                  )
-                                : _valueProgress(
-                                    valueColor: progressValueColor,
-                                    bgColor: progressBgColor,
-                                    value: (value / max) * 100,
-                                  ),
-                      ),
+                          child: _normalProgress(
+                        bgColor: progressBgColor,
+                        valueColor: progressValueColor,
+                      )),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(
