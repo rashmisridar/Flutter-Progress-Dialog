@@ -114,7 +114,7 @@ class ProgressDialog {
     _msg.value = msg;
     return showDialog(
       barrierDismissible: barrierDismissible,
-      barrierColor: barrierColor,
+      barrierColor: Colors.black,
       context: _context,
       builder: (context) => WillPopScope(
         child: AlertDialog(
@@ -131,15 +131,21 @@ class ProgressDialog {
               if (value == max) close();
               return Column(
                 mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                          child: _normalProgress(
-                        bgColor: progressBgColor,
-                        valueColor: progressValueColor,
-                      )),
-                      Expanded(
+                      Center(
+                        child: Container(
+                            child: _normalProgress(
+                          bgColor: progressBgColor,
+                          valueColor: progressValueColor,
+                        )),
+                      ),
+                      /*   Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(
                             left: 15.0,
@@ -157,10 +163,10 @@ class ProgressDialog {
                             ),
                           ),
                         ),
-                      ),
+                      ),*/
                     ],
                   ),
-                  Align(
+                  /* Align(
                     child: Text(
                       value <= 0 ? '' : '${_progress.value}/$max',
                       style: TextStyle(
@@ -172,7 +178,7 @@ class ProgressDialog {
                     alignment: valuePosition == ValuePosition.right
                         ? Alignment.bottomRight
                         : Alignment.bottomCenter,
-                  ),
+                  ),*/
                 ],
               );
             },
