@@ -114,7 +114,7 @@ class ProgressDialog {
     _msg.value = msg;
     return showDialog(
       barrierDismissible: barrierDismissible,
-      barrierColor: Colors.black,
+      barrierColor: Colors.transparent,
       context: _context,
       builder: (context) => WillPopScope(
         child: AlertDialog(
